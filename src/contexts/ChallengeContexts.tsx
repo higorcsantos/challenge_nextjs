@@ -45,6 +45,8 @@ function ChallengeProvider({children}: ChallengeProviderProps){
         const challenge = challenges[randomChallengeIndex];
         setActiveChallenge(challenge);
 
+        new Audio('/public_notification.mp3').play();
+
         if(Notification.permission === 'granted'){
             new Notification('Novo Desafio 🎉',{
                 body: `Valendo ${challenge.amount} xp`
