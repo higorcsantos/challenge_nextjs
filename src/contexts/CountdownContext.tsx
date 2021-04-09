@@ -24,11 +24,14 @@ function CountdownProvider({children}: CountdownProviderProps){
     // Verificar se o countdown zerou
     const [hasFinished,setHasFinished] = useState(false);
 
+    
+
     function startCountdown(){
         setIsActive(true);
     }
     function resetCountdown(){
         clearTimeout(countDownTimeOut);
+        setHasFinished(false);
         setIsActive(false);
         setTime(0.05 * 60);
     }
