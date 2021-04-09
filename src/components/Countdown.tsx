@@ -1,15 +1,17 @@
 import styles from '../styles/components/Countdown.module.css';
 import 'react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ChallengeContext } from '../contexts/ChallengeContexts';
 
 let countDownTimeOut: NodeJS.Timeout;
 function Countdown(){
+    const {startNewChallenge} = useContext(ChallengeContext);
     //estado para inicializar o contador em 25 minutos
     const [time,setTime] = useState(0.05 * 60);
     // Verificar se o countdown está ativo ou não
     const [isActive,setIsActive] = useState(false);
     // Verificar se o countdown zerou
-    const [hasFinished,setHasFinished] = useState(false)
+    const [hasFinished,setHasFinished] = useState(false);
 
     // Arredondar os minutos para que não tenha numeros quebrados
     const minutes = Math.floor(time / 60);
@@ -37,6 +39,7 @@ function Countdown(){
         }else if(isActive && time===0){
             setIsActive(false);
             setHasFinished(true);
+            startNewChallenge();
         }
     }, [isActive,time])
     
